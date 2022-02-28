@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Card"
+            android:icon="@drawable/ic_home"
+            android:title="Card"></item>
+        <item
+            android:id="@+id/nav_Book_Category"
+            android:icon="@drawable/ic_catebook"
+            android:title="Book Category"></item>
+        <item
+            android:id="@+id/nav_Book"
+            android:icon="@drawable/ic_books"
+            android:title="Book"></item>
+        <item
+            android:id="@+id/nav_Member"
+            android:icon="@drawable/ic_customer"
+            android:title="Member"></item>
+        <item android:title="Stats">
+            <menu>
+                <item
+                    android:id="@+id/sub_Revenue"
+                    android:icon="@drawable/ic_money"
+                    android:title="Revenue"></item>
+            </menu>
+        </item>
+
+        <item android:title="User">
+            <menu>
+                <item
+                    android:id="@+id/sub_AddUser"
+                    android:icon="@drawable/ic_adduser"
+                    android:title="Add User"
+                    android:visible="false"></item>
+                <item
+                    android:id="@+id/sub_Pass"
+                    android:icon="@drawable/ic_pass"
+                    android:title="Password"></item>
+                <item
+                    android:id="@+id/sub_Logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout"></item>
+            </menu>
+        </item>
+    </group>
+</menu>
