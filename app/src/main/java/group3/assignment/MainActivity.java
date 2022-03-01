@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import group3.assignment.fragment.ChangePassFragment;
+import group3.assignment.fragment.MemberFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_Member:
                         setTitle("Member");
+                        MemberFragment memberFragment = new MemberFragment();
+                        manager.beginTransaction()
+                                .replace(R.id.fl_content, memberFragment)
+                                .commit();
                         break;
                     case R.id.sub_Revenue:
                         setTitle("Revenue");
