@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import group3.assignment.fragment.BookCategoryFragment;
+import group3.assignment.fragment.BookFragment;
 import group3.assignment.fragment.ChangePassFragment;
 import group3.assignment.fragment.MemberFragment;
 
@@ -64,9 +66,17 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_Book_Category:
                         setTitle("Book Category");
+                        BookCategoryFragment bookCategoryFragment = new BookCategoryFragment();
+                        manager.beginTransaction()
+                                .replace(R.id.fl_content, bookCategoryFragment)
+                                .commit();
                         break;
                     case R.id.nav_Book:
                         setTitle("Book");
+                        BookFragment bookFragment = new BookFragment();
+                        manager.beginTransaction()
+                                .replace(R.id.fl_content, bookFragment)
+                                .commit();
                         break;
                     case R.id.nav_Member:
                         setTitle("Member");
@@ -78,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.sub_Revenue:
                         setTitle("Revenue");
                         break;
-                    case R.id.sub_AddUser:
-                        setTitle("Add User");
-                        break;
+
                     case R.id.sub_Pass:
                         setTitle("Change Password");
                         ChangePassFragment changePassFragment = new ChangePassFragment();

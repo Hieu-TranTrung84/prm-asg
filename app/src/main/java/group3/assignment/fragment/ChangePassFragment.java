@@ -39,6 +39,7 @@ public class ChangePassFragment extends Fragment {
                 edt_confirm_password.setText("");
             }
         });
+
         btn_save_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,6 @@ public class ChangePassFragment extends Fragment {
                     Employee employee = dao.getUsername(username);
                     employee.setPassword(edt_new_password.getText().toString());
                     dao.update(employee);
-                    Log.i("================","Current Password bution");
                     if (dao.update(employee) > 0) {
                         Toast.makeText(getContext(), "Change Password Successful", Toast.LENGTH_SHORT).show();
                         edt_current_password.setText("");

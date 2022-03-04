@@ -2,7 +2,6 @@ package group3.assignment.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,51 +23,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group3.assignment.R;
-import group3.assignment.adapter.MemberAdapter;
-import group3.assignment.dao.MemberDAO;
-import group3.assignment.model.Member;
+import group3.assignment.adapter.BookCategoryAdapter;
+import group3.assignment.dao.BookCategoryDAO;
+import group3.assignment.model.BookCategory;
 
 
-public class MemberFragment extends Fragment {
+public class BookCategoryFragment extends Fragment {
     private RecyclerView recyclerView;
-    private List<Member> list;
-    private MemberDAO dao;
-    private MemberAdapter adapter;
+    private BookCategoryDAO dao;
     private FloatingActionButton fab;
-    private Dialog dialog;
-    private EditText edt_name_member, edt_dob_member, edt_id_member;
-    private Button btn_save_member, btn_cancel_member;
+    private List<BookCategory> list;
+    private BookCategoryAdapter adapter;
 
+    private Dialog dialog;
+    private EditText edt_id_book_category, edt_name_book_category;
+    private Button btn_save_book_category, btn_cancel_book_category;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_member, container, false);
-        recyclerView = v.findViewById(R.id.rv_member);
-        dao = new MemberDAO(getActivity());
+
+        View v = inflater.inflate(R.layout.fragment_book_category, container, false);
+        recyclerView = v.findViewById(R.id.rv_book_category);
+        dao = new BookCategoryDAO(getActivity());
         fab = v.findViewById(R.id.fab);
         list = new ArrayList<>();
 
-        showMember();
-        //insert
+        showBookCategory();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Member member = new Member();
-                openDialog(member, 0);
+                BookCategory category = new BookCategory();
+                openDialog(category, 0);
             }
         });
+
         return v;
     }
 
-    //show member lên recyclerView
-    public void showMember() {
+    private void showBookCategory() {
         list = dao.getAll();
-        adapter = new MemberAdapter(getActivity(), list, new MemberAdapter.IClickListener() {
+        adapter = new BookCategoryAdapter(getActivity(), list, new BookCategoryAdapter.IClickListener() {
             @Override
-            public void onClickUpdateItem(Member member) {
-                openDialog(member, 1);
+            public void onClickUpdateItem(BookCategory category) {
+                openDialog(category, 1);
             }
 
             @Override
@@ -79,7 +79,6 @@ public class MemberFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    //làm func delete cho icon delete
     public void delete(String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
@@ -89,7 +88,7 @@ public class MemberFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dao.delete(id);
-                showMember();
+                showBookCategory();
                 dialog.cancel();
             }
         });
@@ -103,55 +102,50 @@ public class MemberFragment extends Fragment {
         builder.show();
     }
 
-
-    public void openDialog(final Member member, final int check) {
+    public void openDialog(final BookCategory category, final int check) {
         dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.dialog_member);
+        dialog.setContentView(R.layout.dialog_book_category);
 
-        edt_name_member = dialog.findViewById(R.id.edt_name_member);
-        edt_id_member = dialog.findViewById(R.id.edt_id_member);
-        edt_id_member.setEnabled(false);
-        edt_id_member.setVisibility(View.GONE);
+        edt_id_book_category = dialog.findViewById(R.id.edt_id_book_category);
+        edt_id_book_category.setEnabled(false);
+        edt_id_book_category.setVisibility(View.GONE);
+        edt_name_book_category = dialog.findViewById(R.id.edt_name_book_category);
 
-        edt_dob_member = dialog.findViewById(R.id.edt_dob_member);
-        btn_save_member = dialog.findViewById(R.id.btn_save_member);
-        btn_cancel_member = dialog.findViewById(R.id.btn_cancel_member);
-        //kiem tra bien check insert 0 hay update 1
+        btn_cancel_book_category = dialog.findViewById(R.id.btn_cancel_book_category);
+        btn_save_book_category = dialog.findViewById(R.id.btn_save_book_category);
+
+
         if (check != 0) {
-            edt_id_member.setText(String.valueOf(member.getIdMember()));
-            edt_name_member.setText(member.getName());
-            edt_dob_member.setText(member.getDob());
+            edt_id_book_category.setText(String.valueOf(category.getIdBookCategory()));
+            edt_name_book_category.setText(category.getNameBookCategory());
         }
 
-        btn_cancel_member.setOnClickListener(new View.OnClickListener() {
+        btn_cancel_book_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-        btn_save_member.setOnClickListener(new View.OnClickListener() {
+        btn_save_book_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                member.setName(edt_name_member.getText().toString());
-                member.setDob(edt_dob_member.getText().toString());
                 if (checkValidate() > 0) {
-                    //insert 0
+                    category.setNameBookCategory(edt_name_book_category.getText().toString());
                     if (check == 0) {
-                        if (dao.insert(member) > 0) {
-                            Toast.makeText(getActivity(), "Insert Successful", Toast.LENGTH_SHORT).show();
+                        if (dao.insert(category) > 0) {
+                            Toast.makeText(getContext(), "Insert Successful", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "Insert Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Insert Failed", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        //update 1
-                        member.setIdMember(Integer.parseInt(edt_id_member.getText().toString()));
-                        if (dao.update(member) > 0) {
-                            Toast.makeText(getActivity(), "Update Successful", Toast.LENGTH_SHORT).show();
+                        category.setIdBookCategory(Integer.parseInt(edt_id_book_category.getText().toString()));
+                        if (dao.update(category) > 0) {
+                            Toast.makeText(getContext(), "Update Successful", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "Update Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    showMember();
+                    showBookCategory();
                     dialog.dismiss();
                 }
             }
@@ -159,15 +153,12 @@ public class MemberFragment extends Fragment {
         dialog.show();
     }
 
-
     public int checkValidate() {
         int check = 1;
-        if (edt_name_member.getText().length() == 0 || edt_dob_member.getText().length() == 0) {
+        if (edt_name_book_category.getText().length() == 0) {
             Toast.makeText(getContext(), "Fill In All Information", Toast.LENGTH_SHORT).show();
             check = -1;
         }
         return check;
     }
-
-
 }

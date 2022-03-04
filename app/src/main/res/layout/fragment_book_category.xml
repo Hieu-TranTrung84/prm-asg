@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".fragment.MemberFragment">
+    tools:context=".fragment.BookCategoryFragment">
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_member"
+        android:id="@+id/rv_book_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
         app:backgroundTint="#1761A0"
+        android:src="@drawable/ic_add"
         app:layout_anchorGravity="bottom|right|end" />
+
 </FrameLayout>

@@ -9,92 +9,87 @@ public class Data {
 
     public static final String INSERT_MEMBER = "INSERT INTO Member (name, dob) VALUES " +
             "('Trần Tuấn Công','2000')," +
-            "('Lý Ngọc Sang','2000')," +
-            "('Nguyễn Đình Thi','2000')," +
-            "('Trần Quốc Thông','2000')," +
-            "('Trần Ngọc Trà','2000')," +
+            "('Lý Ngọc Sang','1997')," +
+            "('Nguyễn Đình Thi','1998')," +
+            "('Trần Quốc Thông','1987')," +
+            "('Trần Ngọc Trà','1986')," +
             "('Đoàn Hữu Đoan','2000')," +
-            "('Hoàng Minh Phú','2000')," +
-            "('Lê Gia Bảo','2000')," +
-            "('Lê Văn Minh Ngọc','2000')," +
-            "('Dương Quang Nhân Lực','2000')," +
+            "('Hoàng Minh Phú','2001')," +
+            "('Lê Gia Bảo','2002')," +
+            "('Lê Văn Minh Ngọc','2003')," +
+            "('Dương Quang Nhân Lực','2001')," +
             "('Đinh Viết Phong','2000')," +
             "('Nguyễn Thái Quý','2000')," +
-            "('Trần Văn Danh','2000')," +
-            "('Trần Tiến Đạt','2000')," +
-            "('Nguyễn Hưng','2000')," +
+            "('Trần Văn Danh','2006')," +
+            "('Trần Tiến Đạt','1998')," +
+            "('Nguyễn Hưng','1999')," +
             "('Huỳnh Quang Trường','2000')," +
-            "('Nguyễn Hoàng Hưng','2000')," +
+            "('Nguyễn Hoàng Hưng','2003')," +
             "('Trần Quốc Phương','2000')," +
-            "('Nguyễn Văn Nhật','2000')," +
-            "('Hồ Nhật Đức','2000')," +
-            "('Phan Minh Nhân','2000')," +
-            "('Nguyễn Chí Cường','2000')," +
-            "('Nguyễn Nam Hiếu','2000')," +
-            "('Nguyễn Phan Nhật Nguyên','2000')," +
-            "('Nguyễn Thanh Tâm','2000')," +
-            "('Hoàng Hồng Phúc','2000')," +
-            "('Chế Văn Linh','2000')," +
-            "('Nguyễn Hồng Nam','2000')," +
-            "('Nguyễn Lương Hoàng Vĩ','2000')," +
-            "('Đào Duy Hận','2000')," +
-            "('Trần Đình Toàn','2000')," +
-            "('Đoàn Văn Lộc','2000')," +
-            "('Lê Quang Cao Nguyên','2000')," +
-            "('Châu Minh Hiếu','2000')," +
-            "('Lý Quang Cường','2000')," +
-            "('Nguyễn Văn Tấn','2000')," +
-            "('Nguyễn Thái Luật','2000')," +
-            "('Lê Thị Thanh Trúc','2000')," +
+            "('Nguyễn Văn Nhật','2006')," +
+            "('Hồ Nhật Đức','1999')," +
+            "('Phan Minh Nhân','2003')," +
+            "('Nguyễn Chí Cường','1998')," +
+            "('Nguyễn Nam Hiếu','1988')," +
+            "('Nguyễn Hồng Nam','1987')," +
+            "('Trần Đình Toàn','2001')," +
+            "('Đoàn Văn Lộc','2008')," +
+            "('Nguyễn Thái Luật','1997')," +
+            "('Lê Thị Thanh Trúc','1999')," +
             "('Trần Thị Ngọc Hương','2000')";
 
     public static final String INSERT_BOOK_CATEGORY = "INSERT INTO BookCategory (nameBookCategory) VALUES " +
-            "('Tieng Anh co ban')," +
-            "('Tieng Anh nang cao')," +
-            "('Lap trinh co ban')," +
-            "('Lap trinh android')," +
-            "('Lap trinh java')," +
-            "('Lap trinh web')";
+            "('Tiếng Anh cơ bản')," +
+            "('Tiếng Anh nâng cao')," +
+            "('Lập trình cơ bản')," +
+            "('Lập trình nâng cao')," +
+            "('Lập trình android')," +
+            "('Lập trình java')," +
+            "('Thơ')," +
+            "('Tiểu thuyết')," +
+            "('Tạp chí')," +
+            "('Lập trình web')";
     public static final String INSERT_BOOK = "INSERT INTO Book (name, rent, idBookCategory) VALUES " +
-            "('lap trinh java co ban',2000,'5')," +
-            "('lap trinh java nang cao',2000,'5')," +
-            "('lap trinh mang voi java',2000,'5')," +
-            "('lap trinh destop voi Swing',2000,'3')," +
-            "('Du an voi cong nghe MS.NET MVC',2000,'1')," +
-            "('Du an voi cong nghe Spring MVC',2000,'1')," +
-            "('Du an voi cong nghe Servlet/JSP',2000,'5')," +
-            "('Du an voi cong nghe Swing',2000,'6')," +
-            "('Du an voi cong nghe WindowForm',2000,'1')," +
-            "('Du an voi cong nghe SQl server',2000,'3')," +
-            "('Lap trinh MS.NET MVC',2000,'1')," +
-            "('Lap trinh Spring MVC',2000,'1')," +
-            "('Lap trinh Servlet/JSP',2000,'5')," +
-            "('Lap trinh Swing',2000,'6')," +
-            "('Lap trinh WindowForm',2000,'1')," +
-            "('Lap trinh SQl server',2000,'3')";
+            "('Lập trình java cơ bản',2000,'3')," +
+            "('Lập trình java nâng cao',2500,'6')," +
+            "('lap trinh mang voi java',1000,'5')," +
+            "('Lập trình Desktop vời Swing',2000,'3')," +
+            "('Tiếng Anh cho bé',300,'1')," +
+            "('Ôn tập tiếng anh giao tiếp',5000,'2')," +
+            "('Lập trình Python',2000,'3')," +
+            "('Dự án công nghệ Servlet/JSP',7000,'5')," +
+            "('Nghe tiếng anh cho bé',2000,'1')," +
+            "('Dự án công nghệ Springboot',2000,'6')," +
+            "('Design Pattern Java',2000,'4')," +
+            "('Design Pattern Python',2000,'4')," +
+            "('Design Pattern C#',2000,'4')," +
+            "('Design Pattern Go',2000,'4')," +
+            "('Thơ Nhật',1000,'7')," +
+            "('Thơ Trung Quốc',1500,'7')," +
+            "('Tuyển tập 100 bài thơ hay',2000,'7')," +
+            "('Những bài thơ hay nhất của Xuân Quỳnh',2000,'7')," +
+            "('Tạp chí du lịch',3000,'9')," +
+            "('Tạp chí kinh tế',3500,'9')," +
+            "('Tạp chí văn hoá',4500,'9')," +
+            "('Không gia đình',5000,'8')," +
+            "('Ông già và biển cả',7000,'8')," +
+            "('Rừng Na Uy',8000,'8')," +
+            "('Hồng Lâu Mộng',7000,'8')," +
+            "('Số đỏ',2000,'8')," +
+            "('Lập trình SQL server',2000,'3')";
     public static final String INSERT_CARD = "INSERT INTO Card (idEmployee, idMember, idBook, price, date, returnBook) VALUES " +
-            "('admin', 2, 1 ,2000, '2021/10/07', 1)," +
-            "('admin', 3, 2 ,2000, '2021/10/08', 0)," +
-            "('admin', 4, 3 ,2000, '2021/10/09', 0)," +
-            "('admin', 5, 4 ,2000, '2021/10/10', 1)," +
-            "('admin', 6, 5 ,2000, '2021/10/11', 1)," +
-            "('admin', 7, 6 ,2000, '2021/10/12', 0)," +
-            "('admin', 8, 7 ,2000, '2021/10/13', 0)," +
-            "('admin', 9, 8 ,2000, '2021/10/14', 1)," +
-            "('admin', 10, 9 ,2000, '2021/10/15', 0)," +
-            "('admin', 11, 10 ,2000, '2021/10/16', 0)," +
-            "('admin', 12, 11 ,2000, '2021/10/17', 1)," +
-            "('admin', 13, 12 ,2000, '2021/10/18', 0)," +
-            "('admin', 14, 13 ,2000, '2021/10/19', 1)," +
-            "('admin', 15, 14 ,2000, '2021/10/20', 1)," +
-            "('admin', 16, 15 ,2000, '2021/10/21', 0)," +
-            "('admin', 17, 16 ,2000, '2021/10/22', 0)," +
-            "('admin', 18, 1 ,2000, '2021/10/23', 1)," +
-            "('admin', 19, 2 ,2000, '2021/10/24', 0)," +
-            "('admin', 21, 3 ,2000, '2021/10/25', 0)," +
-            "('admin', 22, 4 ,2000, '2021/10/25', 1)," +
-            "('admin', 23, 5 ,2000, '2021/11/02', 0)," +
-            "('admin', 24, 6 ,2000, '2021/11/03', 1)," +
-            "('admin', 25, 7 ,2000, '2021/11/04', 1)," +
-            "('admin', 26, 8 ,2000, '2021/11/05', 0)";
+            "('admin', 1, 1 ,2000, '2022/01/07', 1)," +
+            "('admin', 2, 2 ,2500, '2022/02/08', 0)," +
+            "('admin', 3, 3 ,1000, '2022/01/09', 0)," +
+            "('admin', 4, 4 ,2000, '2022/02/10', 1)," +
+            "('admin', 5, 5 ,300, '2022/01/11', 1)," +
+            "('admin', 6, 6 ,5000, '2022/01/12', 0)," +
+            "('admin', 7, 7 ,2000, '2022/01/13', 0)," +
+            "('admin', 8, 8 ,2000, '2022/02/14', 1)," +
+            "('admin', 9, 9 ,2000, '2022/01/15', 0)," +
+            "('admin', 10, 10 ,2000, '2022/02/16', 0)," +
+            "('admin', 11, 11 ,2000, '2022/02/17', 1)," +
+            "('admin', 12, 12 ,2000, '2022/01/18', 0)," +
+            "('admin', 13, 13 ,2000, '2022/02/18', 0)," +
+            "('admin', 14, 14 ,2000, '2022/01/05', 0)";
 }
