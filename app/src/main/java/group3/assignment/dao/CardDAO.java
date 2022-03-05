@@ -75,4 +75,18 @@ public class CardDAO implements Serializable {
         String sql = "SELECT * FROM Card";
         return getData(sql);
     }
+
+    public int getRevenue(String formDate, String toDate) {
+        String sql = "SELECT Sum(price) AS revenue FROM Card WHERE date BETWEEN ? AND ?";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, new String[]{formDate, toDate});
+        while (c.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("revenue"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
 }

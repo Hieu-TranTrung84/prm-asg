@@ -36,6 +36,7 @@
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_text_view"
         android:hint="Rent"
+        android:inputType="number"
         android:padding="10dp" />
 
     <Spinner

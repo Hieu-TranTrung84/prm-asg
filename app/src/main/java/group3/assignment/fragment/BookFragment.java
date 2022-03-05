@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,8 @@ public class BookFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Book book = new Book();
-//                openDialog(book, 1);
+                Book book = new Book();
+                openDialog(book, 0);
             }
         });
         return v;
@@ -73,7 +74,7 @@ public class BookFragment extends Fragment {
         bookAdapter = new BookAdapter(getActivity(), listBook, new BookAdapter.IClickListener() {
             @Override
             public void onClickUpdateItem(Book book) {
-//                openDialog(book, 0);
+                openDialog(book, 1);
             }
 
             @Override
@@ -110,87 +111,91 @@ public class BookFragment extends Fragment {
         builder.show();
     }
 
-//    private void openDialog(final Book book, final int check) {
-//        dialog = new Dialog(getContext());
-//        dialog.setContentView(R.layout.dialog_book);
-//        edt_id_book = dialog.findViewById(R.id.edt_id_book);
-//        edt_id_book.setEnabled(false);
-//        edt_id_book.setVisibility(View.GONE);
-//        edt_name_book = dialog.findViewById(R.id.edt_name_book);
-//        edt_rent_book = dialog.findViewById(R.id.edt_rent_book);
-//        spinner = dialog.findViewById(R.id.sp_book_category);
-//        btn_save_book = dialog.findViewById(R.id.btn_save_book);
-//        btn_cancel_book = dialog.findViewById(R.id.btn_cancel_book);
-//        //đổ listBookCategory vào spinner
-//        listBookCategory = new ArrayList<>();
-//        bookCategoryDAO = new BookCategoryDAO(getActivity());
-//        listBookCategory = bookCategoryDAO.getAll();
-//        listBookCategoryAdapter = new ListBookCategoryAdapter(getContext(), listBookCategory);
-//        spinner.setAdapter(listBookCategoryAdapter);
-//        //lấy idBookCategory
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                idBookCategory = listBookCategory.get(position).getIdBookCategory();
-//                Toast.makeText(getContext(), "Choose: "
-//                        + listBookCategory.get(position).getNameBookCategory(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        if (check != 0) {
-//            edt_id_book.setText(String.valueOf(book.getIdBook()));
-//            edt_name_book.setText(book.getName());
-//            edt_rent_book.setText(String.valueOf(book.getRent()));
-//            for (int i = 0; i < listBookCategory.size(); i++) {
-//                if (book.getIdBookCategory() == (listBookCategory.get(i).getIdBookCategory())) {
-//                    position = i;
-//                }
-//            }
-//            spinner.setSelection(position);
-//        }
-//
-//        btn_cancel_book.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//        btn_save_book.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                book.setName(edt_name_book.getText().toString());
-//                book.setRent(Integer.parseInt(edt_rent_book.getText().toString()));
-//                book.setIdBookCategory(idBookCategory);
-//                if (checkValidate() > 0) {
-//                    if (check == 0) {
-//                        if (bookDAO.insert(book) > 0) {
-//                            Toast.makeText(getContext(), "Insert Successful", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(getContext(), "Insert Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } else {
-//                        book.setIdBook(Integer.parseInt(edt_id_book.getText().toString()));
-//                        if (bookDAO.update(book) > 0) {
-//                            Toast.makeText(getContext(), "Insert Successful", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(getContext(), "Insert Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//    }
-//
-//    public int checkValidate() {
-//        int check = 1;
-//        if (edt_name_book.getText().length() == 0 || edt_rent_book.getText().length() == 0) {
-//            Toast.makeText(getContext(), "Fill In All Information", Toast.LENGTH_SHORT).show();
-//            check = -1;
-//        }
-//        return check;
-//    }
+    private void openDialog(final Book book, final int check) {
+        dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_book);
+        edt_id_book = dialog.findViewById(R.id.edt_id_book);
+        edt_id_book.setEnabled(false);
+        edt_id_book.setVisibility(View.GONE);
+        edt_name_book = dialog.findViewById(R.id.edt_name_book);
+        edt_rent_book = dialog.findViewById(R.id.edt_rent_book);
+        spinner = dialog.findViewById(R.id.sp_book_category);
+        btn_save_book = dialog.findViewById(R.id.btn_save_book);
+        btn_cancel_book = dialog.findViewById(R.id.btn_cancel_book);
+        //đổ listBookCategory vào spinner book category
+        listBookCategory = new ArrayList<>();
+        bookCategoryDAO = new BookCategoryDAO(getActivity());
+        listBookCategory = (ArrayList<BookCategory>) bookCategoryDAO.getAll();
+        listBookCategoryAdapter = new ListBookCategoryAdapter(getActivity(), listBookCategory);
+        spinner.setAdapter(listBookCategoryAdapter);
+
+        //lấy idBookCategory
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                idBookCategory = listBookCategory.get(position).getIdBookCategory();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        if (check != 0) {
+            edt_id_book.setText(String.valueOf(book.getIdBook()));
+            edt_name_book.setText(book.getName());
+            edt_rent_book.setText(String.valueOf(book.getRent()));
+            for (int i = 0; i < listBookCategory.size(); i++) {
+                if (book.getIdBookCategory() == (listBookCategory.get(i).getIdBookCategory())) {
+                    position = i;
+                }
+            }
+            Log.i("demo", "posSach " + position);
+            spinner.setSelection(position);
+        }
+
+        btn_cancel_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_save_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                book.setName(edt_name_book.getText().toString());
+                book.setRent(Integer.parseInt(edt_rent_book.getText().toString()));
+                book.setIdBookCategory(idBookCategory);
+                if (checkValidate() > 0) {
+                    if (check == 0) {
+                        if (bookDAO.insert(book) > 0) {
+                            Toast.makeText(getContext(), "Insert Successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Insert Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        book.setIdBook(Integer.parseInt(edt_id_book.getText().toString()));
+                        if (bookDAO.update(book) > 0) {
+                            Toast.makeText(getContext(), "Update Successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    showBook();
+                    dialog.dismiss();
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    public int checkValidate() {
+        int check = 1;
+        if (edt_name_book.getText().length() == 0 || edt_rent_book.getText().length() == 0) {
+            Toast.makeText(getContext(), "Fill In All Information", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }
+        return check;
+    }
 }

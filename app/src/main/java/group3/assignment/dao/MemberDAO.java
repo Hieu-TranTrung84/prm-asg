@@ -48,6 +48,12 @@ public class MemberDAO implements Serializable {
         return list;
     }
 
+    public Member getId(String id) {
+        String sql = "SELECT * FROM Member WHERE idMember = ?";
+        List<Member> list = getData(sql, id);
+        return list.get(0);
+    }
+
     public List<Member> getAll() {
         String sql = "SELECT * FROM Member";
         return getData(sql);
